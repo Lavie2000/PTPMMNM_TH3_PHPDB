@@ -1,0 +1,462 @@
+/* Material Design CSS for BookStore Online */
+/* Based on Material Design Lite principles */
+
+/* Import Material Icons */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Material Design Layout */
+.mdl-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mdl-layout__header {
+    background-color: #3f51b5;
+    color: white;
+    padding: 16px 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mdl-layout__title {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.mdl-layout__content {
+    flex: 1;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Material Design Cards */
+.mdl-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.mdl-card__title {
+    background-color: #3f51b5;
+    color: white;
+    padding: 16px 24px;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.mdl-card__content {
+    padding: 24px;
+}
+
+/* Material Design Buttons */
+.mdl-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-height: 36px;
+    min-width: 64px;
+}
+
+.mdl-button--raised {
+    background-color: #3f51b5;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.mdl-button--raised:hover {
+    background-color: #303f9f;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.mdl-button--accent {
+    background-color: #ff4081;
+    color: white;
+}
+
+.mdl-button--accent:hover {
+    background-color: #f50057;
+}
+
+.mdl-button--flat {
+    background-color: transparent;
+    color: #3f51b5;
+}
+
+.mdl-button--flat:hover {
+    background-color: rgba(63, 81, 181, 0.1);
+}
+
+.mdl-button:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Material Design Form Elements */
+.mdl-textfield {
+    position: relative;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.mdl-textfield__input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.mdl-textfield__input:focus {
+    border-bottom-color: #3f51b5;
+}
+
+.mdl-textfield__label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    color: #757575;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.mdl-textfield__input:focus + .mdl-textfield__label,
+.mdl-textfield__input:not(:placeholder-shown) + .mdl-textfield__label {
+    top: -8px;
+    font-size: 12px;
+    color: #3f51b5;
+}
+
+.mdl-selectfield {
+    position: relative;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.mdl-selectfield__select {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+.mdl-selectfield__select:focus {
+    border-bottom-color: #3f51b5;
+}
+
+.mdl-selectfield__label {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    color: #3f51b5;
+    font-size: 12px;
+}
+
+/* Material Design Data Table */
+.mdl-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mdl-data-table th {
+    background-color: #f5f5f5;
+    padding: 16px;
+    text-align: left;
+    font-weight: 500;
+    color: #666;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mdl-data-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mdl-data-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.mdl-data-table__cell--non-numeric {
+    text-align: left;
+}
+
+/* Material Design Grid */
+.mdl-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -8px;
+}
+
+.mdl-cell {
+    padding: 8px;
+    flex: 1;
+}
+
+.mdl-cell--4-col {
+    flex: 0 0 33.333%;
+}
+
+.mdl-cell--6-col {
+    flex: 0 0 50%;
+}
+
+.mdl-cell--8-col {
+    flex: 0 0 66.666%;
+}
+
+.mdl-cell--12-col {
+    flex: 0 0 100%;
+}
+
+/* Material Design Navigation */
+.mdl-navigation {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.mdl-navigation__link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.mdl-navigation__link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Material Design Progress */
+.mdl-progress {
+    width: 100%;
+    height: 4px;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.mdl-progress__bar {
+    height: 100%;
+    background-color: #3f51b5;
+    transition: width 0.3s ease;
+}
+
+/* Material Design Snackbar */
+.mdl-snackbar {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #323232;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.p-16 {
+    padding: 16px;
+}
+
+.elevation-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.elevation-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.elevation-3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+/* Search Form Styling */
+.search-form {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 24px;
+}
+
+.search-form h2 {
+    color: #3f51b5;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-weight: 500;
+}
+
+/* Book Image Styling */
+.book-image {
+    max-width: 100px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mdl-layout__content {
+        padding: 16px;
+    }
+    
+    .mdl-grid {
+        margin: -4px;
+    }
+    
+    .mdl-cell {
+        padding: 4px;
+    }
+    
+    .mdl-cell--4-col,
+    .mdl-cell--6-col,
+    .mdl-cell--8-col {
+        flex: 0 0 100%;
+    }
+    
+    .mdl-navigation {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .mdl-data-table {
+        font-size: 14px;
+    }
+    
+    .mdl-data-table th,
+    .mdl-data-table td {
+        padding: 8px;
+    }
+}
+
+/* File Upload Styling */
+.file-upload {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.file-upload input[type=file] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-upload-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background-color: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.file-upload:hover .file-upload-button {
+    background-color: #e8f0fe;
+    border-color: #3f51b5;
+    color: #3f51b5;
+}
+
+/* Pagination Styling */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 8px;
+    text-decoration: none;
+    color: #3f51b5;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: rgba(63, 81, 181, 0.1);
+}
+
+.pagination .current {
+    background-color: #3f51b5;
+    color: white;
+}
