@@ -72,13 +72,10 @@
                     $params = [$tenSach, $noiDungTomTat, $theLoai, $tacGia, $nhaXuatBan, $namXuatBan, $giaTien, $danhGia];
                     $types = "ssisisdd";
                     
-                    $result = DataProvider::ExecutePreparedQuery($sql, $params, $types);
+                    // Execute query and get the insert ID in one call
+                    $maSach = DataProvider::ExecutePreparedQuery($sql, $params, $types, true);
                     
-                    if ($result) {
-                        // Get the last inserted ID
-                        $connection = new mysqli("localhost", "root", "", "ebookDB");
-                        $maSach = $connection->insert_id;
-                        $connection->close();
+                    if ($maSach) {
                         
                         // Handle file upload
                         $hinhBia = "";

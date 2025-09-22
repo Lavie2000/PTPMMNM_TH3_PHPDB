@@ -47,9 +47,10 @@ class DataProvider
      * @param string $sql The SQL query with placeholders
      * @param array $params Array of parameters to bind
      * @param string $types String indicating parameter types (i, d, s, b)
-     * @return mysqli_result|bool The query result or false on failure
+     * @param bool $returnInsertId Whether to return the last insert ID for INSERT queries
+     * @return mysqli_result|bool|int The query result for SELECT, execution status for UPDATE/DELETE, or insert ID for INSERT
      */
-    public static function ExecutePreparedQuery($sql, $params = [], $types = "")
+    public static function ExecutePreparedQuery($sql, $params = [], $types = "", $returnInsertId = false)
     {
         // Create connection
         $connection = new mysqli(self::$host, self::$username, self::$password, self::$database);
@@ -75,10 +76,21 @@ class DataProvider
         }
         
         // Execute statement
-        $stmt->execute();
+        $executeResult = $stmt->execute();
         
-        // Get result
-        $result = $stmt->get_result();
+        // Determine query type to return appropriate result
+        $queryType = strtoupper(trim(explode(' ', $sql)[0]));
+        
+        if ($queryType === 'SELECT') {
+            // For SELECT queries, return the result set
+            $result = $stmt->get_result();
+        } elseif ($queryType === 'INSERT' && $returnInsertId && $executeResult) {
+            // For INSERT queries when insert ID is requested, return the last insert ID
+            $result = $connection->insert_id;
+        } else {
+            // For INSERT, UPDATE, DELETE queries, return execution status
+            $result = $executeResult;
+        }
         
         // Close statement and connection
         $stmt->close();

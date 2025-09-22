@@ -515,3 +515,59 @@ BookStore Online là một hệ thống quản lý sách hoàn chỉnh với gia
 Với kiến trúc modular và mã nguồn được tài liệu hóa tốt, dự án có thể được tùy chỉnh và phát triển thêm theo nhu cầu cụ thể của từng tổ chức.
 
 **Chúc bạn sử dụng hệ thống hiệu quả và thành công!** 📚✨
+
+---
+
+## Lịch Sử Cập Nhật
+
+### Version 1.0.1 - Ngày 22/09/2025
+
+#### 🐛 Khắc Phục Lỗi
+
+**Sửa lỗi thông báo "Không thể thêm sách vui lòng thử lại!" trong ThemSach.php**
+
+- **Vấn đề**: Mặc dù dữ liệu được thêm thành công vào cơ sở dữ liệu, trang vẫn hiển thị thông báo lỗi
+- **Nguyên nhân**: Phương thức `ExecutePreparedQuery()` trong `DataProvider.php` trả về `false` cho các câu lệnh INSERT do sử dụng `get_result()` không phù hợp
+- **Giải pháp**: 
+  - Cải thiện phương thức `ExecutePreparedQuery()` để phân biệt giữa câu lệnh SELECT và INSERT/UPDATE/DELETE
+  - Trả về kết quả phù hợp cho từng loại câu lệnh
+  - Thêm tham số `$returnInsertId` để lấy ID của bản ghi vừa được thêm
+  - Tối ưu hóa `ThemSach.php` để sử dụng một kết nối duy nhất cho việc thêm và lấy ID
+
+#### 📝 Thay Đổi Kỹ Thuật
+
+**DataProvider.php**:
+```php
+// Thêm logic phân biệt loại câu lệnh SQL
+$queryType = strtoupper(trim(explode(' ', $sql)[0]));
+
+if ($queryType === 'SELECT') {
+    // Trả về result set cho SELECT
+    $result = $stmt->get_result();
+} elseif ($queryType === 'INSERT' && $returnInsertId && $executeResult) {
+    // Trả về insert ID cho INSERT
+    $result = $connection->insert_id;
+} else {
+    // Trả về trạng thái thực thi cho UPDATE/DELETE
+    $result = $executeResult;
+}
+```
+
+**ThemSach.php**:
+```php
+// Sử dụng phương thức cải tiến để lấy insert ID
+$maSach = DataProvider::ExecutePreparedQuery($sql, $params, $types, true);
+```
+
+#### ✅ Kết Quả
+
+- ✅ Thêm sách thành công hiển thị đúng thông báo "Đã thêm sách thành công với mã số: X"
+- ✅ Không còn hiển thị thông báo lỗi sai
+- ✅ Tối ưu hiệu suất bằng cách giảm số lượng kết nối database
+- ✅ Cải thiện trải nghiệm người dùng
+
+#### 🔧 Tương Thích
+
+- Thay đổi này không ảnh hưởng đến các chức năng khác
+- Tương thích ngược với các phiên bản trước
+- Không cần thay đổi cấu trúc database
